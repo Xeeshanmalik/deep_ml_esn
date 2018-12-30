@@ -1,0 +1,9 @@
+name: ML-ESN
+dependencies:
+- python=3.6
+- pip
+- pip:
+  - pandas
+  - arghelper
+  - toolz==0.9.0
+  - matplotlib
