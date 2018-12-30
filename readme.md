@@ -1,4 +1,4 @@
-#Deep Multiple Layered Echo State Network
+# Deep Multiple Layered Echo State Network
 
 A novel architecture and learning algorithm for a multilayered echo state network (ML-ESM). The addition
 of multiple layers of reservoir are shown to provide a more robust alternative to conventional RC networks.
@@ -12,9 +12,9 @@ How to use this algorithm.
 ADD ESN package into your project.
 
 
-# Layer 1
+## Layer 1
 x = E.ESN(x,W_L1, W_reservoir_L1, a)
 
-# Layer 2
+## Layer 2
 
 x = E.ESN(x,W_L2, W_reservoir_L2, a)
