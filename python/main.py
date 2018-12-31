@@ -3,9 +3,7 @@ import numpy as np
 import ast
 import argparse
 import sys
-from ESN.ML import ESN as E
-
-
+from ESN.ML import ESN
 
 
 if __name__ == '__main__':
@@ -24,7 +22,7 @@ if __name__ == '__main__':
 
     with open(args.dataset_file,'r') as f:
         dt = f.readlines()
-        print(dt)
+
         for y in dt:
             data.append(ast.literal_eval(y))
 
@@ -39,25 +37,33 @@ if __name__ == '__main__':
     W_reservoir_L1 = (np.random.rand(resSize,resSize)-0.3)
     W_L2 = np.random.rand(resSize, resSize) - 0.5
     W_reservoir_L2 = (np.random.rand(resSize, resSize) - 0.3)
+    W_L3 = np.random.rand(resSize, resSize) - 0.5
+    W_reservoir_L3 = (np.random.rand(resSize, resSize) - 0.3)
     W_reservoir_L0 = W_reservoir_L0 * 0.13
     W_reservoir_L1 = W_reservoir_L1 * 0.13
     W_reservoir_L2 = W_reservoir_L2 * 0.13
+    W_reservoir_L3 = W_reservoir_L3 * 0.13
 
     X = np.zeros((resSize, trainLen - initLen))
     Yt = np.transpose(data[initLen+1:trainLen+1])
     x = np.zeros((resSize,1))
 
     for t in range(1,trainLen):
-        # x = E.ESN(data,W_L0,W_reservoir_L0,regularization, t)
+
         u = data[t]
+
         # Layer 0
         x = np.multiply((1 - a), x) + \
             np.multiply(a, np.tanh(np.add(np.multiply(W_L0, u), np.dot(W_reservoir_L0, x))))
+
         # Layer 1
-        x = E.ESN(x,W_L1, W_reservoir_L1, a)
+        x = ESN(W_L1, W_reservoir_L1, a).esn(x)
 
         # Layer 2
-        x = E.ESN(x,W_L2, W_reservoir_L2, a)
+        x = ESN(W_L2, W_reservoir_L2, a).esn(x)
+
+        # Layer 3
+        x = ESN(W_L3, W_reservoir_L3, a).esn(x)
 
         if t > initLen:
             X[:resSize,t-initLen] = np.transpose(x)
@@ -71,16 +77,21 @@ if __name__ == '__main__':
     u = data[trainLen+1]
 
     for t in range(1,testLen):
+
         x = np.multiply((1 - a), x) + \
             np.multiply(a, np.tanh(np.add(np.multiply(W_L0, u), np.dot(W_reservoir_L0, x))))
 
         # Layer 1
-        x = E.ESN(x, W_L1, W_reservoir_L1, a)
+        x = ESN(W_L1, W_reservoir_L1, a).esn(x)
 
         # Layer 2
-        x = E.ESN(x, W_L2, W_reservoir_L2, a)
+        x = ESN(W_L2, W_reservoir_L2, a).esn(x)
+
+        # Layer 3
+        x = ESN(W_L3, W_reservoir_L3, a).esn(x)
 
         y = np.asscalar(np.dot(np.transpose(Wout), x))
+
         Y[t] = y
         u = data[trainLen + t + 1]
 
