@@ -39,11 +39,11 @@ from ESN.ML import ESN
 
 ## Layer 1
 
-x = ESN(W_L1, W_reservoir_L1, a)(x)
+L1 = ESN(W_L1, W_reservoir_L1, a)(x)
 
 ## Layer 2
 
-x = ESN(W_L2, W_reservoir_L2, a)(x)
+L2 = ESN(W_L2, W_reservoir_L2, a)(L1)
 
 . <br />
 . <br />
@@ -52,7 +52,7 @@ x = ESN(W_L2, W_reservoir_L2, a)(x)
 
 ## Layer N
 
-x = ESN(W_Ln, W_reservoir_Ln, a)(x)
+Ln = ESN(W_Ln, W_reservoir_Ln, a)(Ln-1)
 
 Output of The Project on McKayGlass Timeseries Dataset
 
