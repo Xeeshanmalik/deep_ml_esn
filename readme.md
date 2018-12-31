@@ -18,3 +18,6 @@ x = E.ESN(x,W_L1, W_reservoir_L1, a)
 ## Layer 2
 
 x = E.ESN(x,W_L2, W_reservoir_L2, a)
+
+
+pip project: https://packaging.python.org/tutorials/packaging-projects/
