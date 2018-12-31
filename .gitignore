@@ -1,2 +1,5 @@
 .DS_Store
 .idea/
+python/build
+python/ESN.egg-info
+python/.pypirc

@@ -7,3 +7,6 @@ dependencies:
   - arghelper
   - toolz==0.9.0
   - matplotlib
+  - twine
+  - ESN
+  - jupyter

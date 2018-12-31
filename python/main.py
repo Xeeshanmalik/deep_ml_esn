@@ -63,7 +63,14 @@ if __name__ == '__main__':
         x = ESN(W_L2, W_reservoir_L2, a).esn(x)
 
         # Layer 3
-        x = ESN(W_L3, W_reservoir_L3, a).esn(x)
+        # x = ESN(W_L3, W_reservoir_L3, a).esn(x)
+
+        # .
+        # .
+        # .
+
+        # Layer N
+        # x = ESN(W_Ln, W_reservoir_Ln, a).esn(x)
 
         if t > initLen:
             X[:resSize,t-initLen] = np.transpose(x)
@@ -88,7 +95,14 @@ if __name__ == '__main__':
         x = ESN(W_L2, W_reservoir_L2, a).esn(x)
 
         # Layer 3
-        x = ESN(W_L3, W_reservoir_L3, a).esn(x)
+        # x = ESN(W_L3, W_reservoir_L3, a).esn(x)
+
+        # .
+        # .
+        # .
+
+        # Layer N
+        # x = ESN(W_Ln, W_reservoir_Ln, a).esn(x)
 
         y = np.asscalar(np.dot(np.transpose(Wout), x))
 

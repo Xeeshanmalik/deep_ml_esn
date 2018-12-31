@@ -6,22 +6,7 @@ testLen = 305;
 data = load('CalproProg_un.csv');
 uu1 = data;
 data = data(:,1:56);
-%yfit = glmval(uu1(:,58),data,'logit')
-%b = sbs(data,uu1(:,58),0.05,'lin')
-%b = stepwisefit(data,uu1(:,58))
-%c = cvpartition(uu1(:,58),'k',10)
-%c.NumTestSets
-%pause;
-%K=10;
-%Indices = crossvalind('Kfold', uu1(:,58), K)
-%size(Indices)
 
-%[betahat1,se1,pval1,inmodel1,stats1] = ...
-%          stepwisefit(data,uu1(:,58),...
-%          'penter',.05,'premove',0.10,...
-%          'display','off')
-   
-%data = data(:,[12,13,33,34,36,39,40,41,42,43,45,46,51,52,53]);
 dim = size(data,2);
 inSize = dim; outSize=1;
 resSize = 100;
@@ -79,8 +64,7 @@ Yt1
 pause;
 for t = 1:testLen 
 	x = (1-a)*x + a*tanh(Win*[1;u] + W*x );
-    x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL1*x));  %Layer 2
-%     x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL2*x));  %Layer 2
+  x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL1*x));  %Layer 2
 	y = Wout* [1;u;x];
 	Y(:,t) = y;
 	% generative mode:
@@ -91,8 +75,6 @@ for t = 1:testLen
      end
 end
 R = round(Y)
-%errorLen = 300;
-%mse = sum((data(trainLen+2:trainLen+errorLen+1)'-Y(1,1:errorLen)).^2)./errorLen;
 size(Y)
 size(Yt1)
 
@@ -222,11 +204,11 @@ function [w,ssexp,sse] = sfslin (x,y)
 % Linear regression model
 % x		inputs
 % y		targets
-% 
+%
 % w		weight vector
 % ssexp         sum of squares explained by model (ssy - sse)
 % sse           sum of squared errors from model
- 
+
 n=size(x,1);
 xx=[x, ones(n,1)];
 y=y(:);

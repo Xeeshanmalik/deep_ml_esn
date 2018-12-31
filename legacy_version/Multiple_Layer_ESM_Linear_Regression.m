@@ -61,8 +61,9 @@ x = zeros(resSize,1);
 
 for t = 1:trainLen
 	u = data(t);
-	x = a*x + (1-a)* tanh( Win*[1;u] + W*x );    %Layer 1
+	  x = a*x + (1-a)* tanh( Win*[1;u] + W*x );    %Layer 1
     x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL1*x));  %Layer 2
+     % uncomment the below code and add layers one by one
     %x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL2*x));  %Layer 3
     %x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL3*x));  %Layer 4
     %x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL4*x));  %Layer 5
@@ -89,6 +90,7 @@ u = data(trainLen+1);
    
     for t = 1:testLen+timestep 
         x = a*x + (1-a)*tanh(Win*[1;u] + W*x);       %Layer 1
+        % uncomment the below code and add layers one by one
        % x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL1*x));  %Layer 2
         %x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL2*x));  %Layer 3
         %x = a*x + (1-a)*(tanh(Wr*[1;u;x] + WL3*x));  %Layer 4
