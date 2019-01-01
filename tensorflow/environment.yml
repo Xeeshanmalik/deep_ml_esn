@@ -1,0 +1,12 @@
+name: TENSLOWFLOW-MLESN
+dependencies:
+- python=2.7
+- pip
+- pip:
+  - pandas
+  - arghelper
+  - toolz==0.9.0
+  - matplotlib
+  - requests
+  - jupyter
+  - tensorflow
