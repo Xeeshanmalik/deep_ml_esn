@@ -9,7 +9,7 @@ a novel architecture and algorithm. IEEE Transactions on cybernetics, 47(4), 946
 
 
 ````
-
+    
 
 ## To run this project
 

@@ -1,6 +1,6 @@
 name: ML-ESN
 dependencies:
-- python=3.6
+- python_version=3.6
 - pip
 - pip:
   - pandas
