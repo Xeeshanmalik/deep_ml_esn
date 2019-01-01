@@ -28,21 +28,15 @@ if __name__ == '__main__':
 
     inSize=1
     outSize=1
-    resSize=100
+    resSize=10
     a=0.4
+    number_of_layers = 3
 
     W_L0=(np.random.rand(resSize,1)-0.5) * 1
     W_reservoir_L0 = np.random.rand(resSize,resSize)-0.5
-    W_L1=np.random.rand(resSize,resSize)-0.5
-    W_reservoir_L1 = (np.random.rand(resSize,resSize)-0.3)
-    W_L2 = np.random.rand(resSize, resSize) - 0.5
-    W_reservoir_L2 = (np.random.rand(resSize, resSize) - 0.3)
-    W_L3 = np.random.rand(resSize, resSize) - 0.5
-    W_reservoir_L3 = (np.random.rand(resSize, resSize) - 0.3)
-    W_reservoir_L0 = W_reservoir_L0 * 0.13
-    W_reservoir_L1 = W_reservoir_L1 * 0.13
-    W_reservoir_L2 = W_reservoir_L2 * 0.13
-    W_reservoir_L3 = W_reservoir_L3 * 0.13
+    W=np.random.rand(number_of_layers,resSize,resSize)-0.5
+    W_reservoir = (np.random.rand(number_of_layers,resSize,resSize)-0.3)
+    W_reservoir = W_reservoir * 0.13
 
     X = np.zeros((resSize, trainLen - initLen))
     Yt = np.transpose(data[initLen+1:trainLen+1])
@@ -57,14 +51,13 @@ if __name__ == '__main__':
             np.multiply(a, np.tanh(np.add(np.multiply(W_L0, u), np.dot(W_reservoir_L0, x))))
 
         # Layer 1
-        x = ESN(W_L1, W_reservoir_L1, a).esn(x)
+        x = ESN(W[0, :, :], W_reservoir[0, :, :], a).esn(x)
 
         # Layer 2
-        x = ESN(W_L2, W_reservoir_L2, a).esn(x)
+        x = ESN(W[1, :, :], W_reservoir[1, :, :], a).esn(x)
 
         # Layer 3
-        # x = ESN(W_L3, W_reservoir_L3, a).esn(x)
-
+        # x = ESN(W[2, :, :], W_reservoir[2, :, :], a).esn(x)
         # .
         # .
         # .
@@ -89,12 +82,14 @@ if __name__ == '__main__':
             np.multiply(a, np.tanh(np.add(np.multiply(W_L0, u), np.dot(W_reservoir_L0, x))))
 
         # Layer 1
-        x = ESN(W_L1, W_reservoir_L1, a).esn(x)
+        x = ESN(W[0, :, :], W_reservoir[0, :, :], a).esn(x)
 
         # Layer 2
-        x = ESN(W_L2, W_reservoir_L2, a).esn(x)
+        x = ESN(W[1, :, :], W_reservoir[1, :, :], a).esn(x)
 
         # Layer 3
+        # x = ESN(W[2, :, :], W_reservoir[2, :, :], a).esn(x)
+
         # x = ESN(W_L3, W_reservoir_L3, a).esn(x)
 
         # .
