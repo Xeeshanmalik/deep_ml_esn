@@ -1,6 +1,6 @@
 # Deep Multiple Layered Echo State Network
 
-A novel architecture and learning algorithm for a multilayered echo state network (ML-ESM). The addition
+A novel architecture and learning algorithm for a multilayered echo state network (ML-ESN). The addition
 of multiple layers of reservoir are shown to provide a more robust alternative to conventional RC networks.
 
 ````
