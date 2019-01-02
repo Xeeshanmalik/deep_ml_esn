@@ -9,7 +9,7 @@ a novel architecture and algorithm. IEEE Transactions on cybernetics, 47(4), 946
 
 
 ````
-This project consist of deep multilayered ESN implementation in
+This project consist of deep multilayered ESN implementation having
 
 1) Matlab Version
 2) Python Version
