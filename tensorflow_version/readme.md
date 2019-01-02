@@ -9,9 +9,13 @@ a novel architecture and algorithm. IEEE Transactions on cybernetics, 47(4), 946
 
 
 ````
+This project consist of deep multilayered ESN implementation in
 
+1) Matlab Version
+2) Python Version
+3) Tensorflow Version
 
-## To run this project
+## To run both tensorflow and python version
 
 ````
 chmod +x ./run_train_test.sh
@@ -61,5 +65,5 @@ Output of The Project on McKayGlass Timeseries Dataset
 
 ## Limitations
 
-1) The weights everytime are initialized randomly but on scale recommendation is to optimize and fix the initialization of both
-   internal, external and reservoirs weights excepts the readouts.
+1) The weights everytime are initialized randomly but on scale recommendation is to optimize, tune and fix the initialization of both
+   internal, external and reservoirs weights like any other networks excepts the readouts.
