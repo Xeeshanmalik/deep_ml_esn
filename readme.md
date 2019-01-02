@@ -35,7 +35,6 @@ from ESN.ML import ESN
 
 ## Layer 0
 
-### Standard State of The Art ESN
 ````
         x = np.multiply((1 - a), x) + \
             np.multiply(a, np.tanh(np.add(np.multiply(W_L0, u), np.dot(W_reservoir_L0, x))))

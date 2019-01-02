@@ -35,7 +35,6 @@ from ESN.ML import ESN
 
 ## Layer 0
 
-### Standard State of The Art ESN
 ````
         x = np.multiply((1 - a), x) + \
             np.multiply(a, np.tanh(np.add(np.multiply(W_L0, u), np.dot(W_reservoir_L0, x))))
@@ -63,7 +62,7 @@ Output of The Project on McKayGlass Timeseries Dataset
 ![alt text](https://github.com/Xeeshanmalik/deep_ml_esn/blob/master/data/single.png)
 
 
-## Limitations
+## Limitation
 
 1) The weights everytime are initialized randomly but on scale recommendation is to optimize, tune and fix the initialization of both
    internal, external and reservoirs weights like any other networks except the readouts.
