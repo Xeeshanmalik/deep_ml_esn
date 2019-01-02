@@ -5,6 +5,8 @@ import ast
 from ml_esn_cells import MLESNCell
 import argparse
 import sys
+import matplotlib.pyplot as plt
+
 
 
 def MackeyGlass(tr_size=500, washout_size=50, units=30, connectivity=0.2, scale=0.7, elements=2000):
@@ -17,10 +19,10 @@ def MackeyGlass(tr_size=500, washout_size=50, units=30, connectivity=0.2, scale=
 
   data = map(float, data_str[:elements])
   data_t = tf.reshape(tf.constant(data), [1, elements, 1])
-  esn = MLESNCell(units, connectivity, scale)
+  mlesn = MLESNCell(units, connectivity, scale)
 
   print("Building graph...")
-  outputs, final_state = tf.nn.dynamic_rnn(esn, data_t, dtype=tf.float32)
+  outputs, final_state = tf.nn.dynamic_rnn(mlesn, data_t, dtype=tf.float32)
   washed = tf.squeeze(tf.slice(outputs, [0, washout_size, 0], [-1, -1, -1]))
 
   with tf.Session() as S:
@@ -40,6 +42,11 @@ def MackeyGlass(tr_size=500, washout_size=50, units=30, connectivity=0.2, scale=
     ts_y = np.mat(data[washout_size+tr_size+1:])
 
     ts_mse = np.mean(np.square(ts_y - ts_out))
+    plt.title("Target and generated signals y(n) starting at n=0")
+    plt.plot(np.transpose(ts_y))
+    plt.plot(np.transpose(ts_out))
+    plt.legend(['Target signal', 'Free-running predicted signal'], loc='upper left')
+    plt.show()
 
   print("Test MSE: " + str(ts_mse))
 

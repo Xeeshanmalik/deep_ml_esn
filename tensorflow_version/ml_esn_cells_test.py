@@ -3,7 +3,7 @@ import numpy as np
 from ml_esn_cells import MLESNCell
 
 
-class ESNCellTest(tf.test.TestCase):
+class MLESNCELLSTest(tf.test.TestCase):
 
   def test_esn_dynamics(self):
     """ Simple test of reservoir dynamics """

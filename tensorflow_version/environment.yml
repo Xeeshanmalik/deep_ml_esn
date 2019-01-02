@@ -1,6 +1,6 @@
 name: TENSLOWFLOW-MLESN
 dependencies:
-- python_version=2.7
+- python = 2.7
 - pip
 - pip:
   - pandas
@@ -9,4 +9,4 @@ dependencies:
   - matplotlib
   - requests
   - jupyter
-  - tensorflow_version
+  - tensorflow

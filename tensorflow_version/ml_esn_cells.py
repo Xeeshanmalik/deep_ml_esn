@@ -56,15 +56,34 @@ class MLESNCell(rnn_cell_impl.RNNCell):
 
     with vs.variable_scope(scope or type(self).__name__):  # "ESNCell"
 
+      # Layer 0
+
       win = vs.get_variable("InputMatrix", [input_size, self._num_units], dtype=dtype,
                             trainable=False, initializer=self._win_initializer)
       wr = vs.get_variable("ReservoirMatrix", [self._num_units, self._num_units], dtype=dtype,
                            trainable=False, initializer=self._wr_initializer)
+      # Layer 1
+
+      win_l1 = vs.get_variable("InputMatrix_L1",[self._num_units, self._num_units], dtype=dtype,
+                            trainable=False, initializer=self._win_initializer)
+
+      wr_l1 = vs.get_variable("ReservoirMatrix_L1",[self._num_units,self._num_units],dtype=dtype,
+                              trainable=False, initializer=self._wr_initializer)
+      # .
+      # .
+      # .
+      # Layer N
+
       b = vs.get_variable("Bias", [self._num_units], dtype=dtype, trainable=False, initializer=self._bias_initializer)
 
       in_mat = array_ops.concat([inputs, state], axis=1)
       weights_mat = array_ops.concat([win, wr], axis=0)
 
-      output = (1 - self._leaky) * state + self._leaky * self._activation(math_ops.matmul(in_mat, weights_mat) + b)
+      x = (1 - self._leaky) * state + self._leaky * self._activation(math_ops.matmul(in_mat, weights_mat) + b)
 
-    return output, output
+      in_mat = array_ops.concat([x,state], axis=1)
+      weights_mat = array_ops.concat([win_l1,wr_l1], axis=0)
+
+      x = (1 - self._leaky) * state + self._leaky * self._activation(math_ops.matmul(in_mat, weights_mat) + b)
+
+    return x, x
