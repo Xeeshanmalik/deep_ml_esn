@@ -66,4 +66,4 @@ Output of The Project on McKayGlass Timeseries Dataset
 ## Limitations
 
 1) The weights everytime are initialized randomly but on scale recommendation is to optimize, tune and fix the initialization of both
-   internal, external and reservoirs weights like any other networks excepts the readouts.
+   internal, external and reservoirs weights like any other networks except the readouts.
