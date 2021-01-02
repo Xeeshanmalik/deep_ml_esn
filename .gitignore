@@ -3,3 +3,6 @@
 python/build
 python/ESN.egg-info
 python/.pypirc
+python_version/python/ESN/*.pyc
+python_version/python/ESN/__pycache__/*.pyc
+tensorflow_version/*.pyc
